@@ -1558,7 +1558,7 @@ class Validate
      * @param mixed  $rule      验证规则数据
      * @return string
      */
-    protected function getRuleMsg(string $attribute, string $title, string $type, $rule): string
+    protected function getRuleMsg(array $attribute, string $title, string $type, $rule): array
     {
         if (isset($this->message[$attribute . '.' . $type])) {
             $msg = $this->message[$attribute . '.' . $type];
