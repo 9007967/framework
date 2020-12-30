@@ -1828,15 +1828,19 @@ class Request implements ArrayAccess
     }
 
     /**
-     * 设置当前的控制器名
+     * 获取当前的控制器名
      * @access public
-     * @param  string $controller 控制器名
-     * @return $this
+     * @param bool $convert 转换为小写
+     * @param bool $suffix  获取多层控制器最后控制器名称
+     * @return string
      */
-    public function setController(string $controller)
+    public function controller (bool $convert = false, bool $suffix = false): string
     {
-        $this->controller = $controller;
-        return $this;
+        $name = $this->controller ?: '';
+        if ($suffix and $suffix_offset = strpos($name, '.')) {
+            $name = substr($name, $suffix_offset + 1);
+        }
+        return $convert ? strtolower($name) : $name;
     }
 
     /**
